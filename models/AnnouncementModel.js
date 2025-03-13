@@ -1,0 +1,15 @@
+const mongoose = require("mongoose");
+
+const announcementSchema = new mongoose.Schema(
+  {
+    title: { type: String, required: true },
+    message: { type: String, required: true },
+    clubName: { type: String, required: true },
+    createdBy: { type: String, required: true },
+  },
+  { timestamps: true }
+);
+
+const Announcement = mongoose.model("Announcement", announcementSchema);
+
+module.exports = Announcement;
