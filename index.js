@@ -19,8 +19,8 @@ const Payment = require("./models/PaymentModel");
 
 // cors
 const corsOption = {
-    origin : "http://localhost:5173",
-    methods : "GET , POST , PUT , DELETE , PATCH ,HEAD",
+    origin: process.env.FRONTEND_URL || "http://localhost:5173",
+    methods: "GET , POST , PUT , DELETE , PATCH ,HEAD",
     credentials: true,
 }
 app.use(cors(corsOption));

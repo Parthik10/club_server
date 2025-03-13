@@ -15,7 +15,7 @@ const app = express();
 
 // CORS configuration
 const corsOptions = {
-    origin: "http://localhost:5173", // Change this based on frontend URL
+    origin: process.env.FRONTEND_URL || "https://clubmanagement-4mhaz9u3b-parthiks-projects-66c6720a.vercel.app/", // Change this based on frontend URL
     methods: "GET,POST,PUT,DELETE,PATCH",
     credentials: true,
 };
