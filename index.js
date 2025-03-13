@@ -29,10 +29,7 @@ app.use(cors(corsOption));
 app.use(express.json()); // Ensure JSON parsing middleware is set up
 
 // Database connection
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect(process.env.MONGODB_URI)
 .then(() => console.log("MongoDB connected"))
 .catch((err) => {
   console.error("MongoDB connection error:", err);
