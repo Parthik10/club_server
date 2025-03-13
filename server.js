@@ -1,5 +1,4 @@
-require("dotenv").config(); // Load environment variables
-
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -9,13 +8,13 @@ const announcementRouter = require("./routes/announcementRouter.js");
 const eventRouter = require("./routes/eventRouter.js");
 const eventRegistrationRouter = require("./routes/eventRegistrationRouter.js");
 const paymentRouter = require("./routes/paymentRouter.js");
-const authRouter = require("./routes/authRouter.js"); // Import auth routes
+const authRouter = require("./routes/authRouter.js");
 
 const app = express();
 
 // CORS configuration
 const corsOptions = {
-    origin: process.env.FRONTEND_URL || "https://clubmanagement-4mhaz9u3b-parthiks-projects-66c6720a.vercel.app/", // Change this based on frontend URL
+    origin: process.env.FRONTEND_URL || "https://clubmanagement-4mhaz9u3b-parthiks-projects-66c6720a.vercel.app",
     methods: "GET,POST,PUT,DELETE,PATCH",
     credentials: true,
 };
@@ -29,9 +28,14 @@ app.use("/api/announcements", announcementRouter);
 app.use("/api/events", eventRouter);
 app.use("/api/event-registrations", eventRegistrationRouter);
 app.use("/api/payments", paymentRouter);
-app.use("/api/auth", authRouter); // Use auth routes
+app.use("/api/auth", authRouter);
 
-// Global error handler (optional)
+// ✅ Add Root Route (Fixes "Cannot GET /")
+app.get("/", (req, res) => {
+    res.send("Club Management API is running...");
+});
+
+// Global error handler
 app.use((err, req, res, next) => {
     console.error("❌ Error:", err.message);
     res.status(500).json({ message: "Server Error", error: err.message });
@@ -39,7 +43,7 @@ app.use((err, req, res, next) => {
 
 // MongoDB connection
 const PORT = process.env.PORT || 5000;
-const MONGO_URI = process.env.MONGODB_URI; // Store in .env
+const MONGO_URI = process.env.MONGODB_URI;
 
 mongoose
     .connect(MONGO_URI)
