@@ -12,9 +12,13 @@ const authRouter = require("./routes/authRouter.js");
 
 const app = express();
 
-// CORS configuration
+//cors
 const corsOptions = {
-    origin: process.env.FRONTEND_URL || "https://clubmanagement-4mhaz9u3b-parthiks-projects-66c6720a.vercel.app",
+    origin: [
+        process.env.FRONTEND_URL, 
+        "https://clubmanagement-4mhaz9u3b-parthiks-projects-66c6720a.vercel.app",
+        "http://localhost:5173"
+    ].filter(Boolean), // Removes undefined values
     methods: "GET,POST,PUT,DELETE,PATCH",
     credentials: true,
 };
@@ -28,7 +32,7 @@ app.use("/api/announcements", announcementRouter);
 app.use("/api/events", eventRouter);
 app.use("/api/event-registrations", eventRegistrationRouter);
 app.use("/api/payments", paymentRouter);
-app.use("/api/auth", authRouter);
+app.use("/api/auth", authRouter); // Ensure this line is present
 
 // ✅ Add Root Route (Fixes "Cannot GET /")
 app.get("/", (req, res) => {
@@ -49,7 +53,7 @@ mongoose
     .connect(MONGO_URI)
     .then(() => {
         app.listen(PORT, () => {
-            console.log(`✅ Server running on port: ${PORT}`);
+            // console.log(`✅ Server running on port: ${PORT}`);
         });
     })
     .catch((error) => {
