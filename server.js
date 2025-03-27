@@ -16,7 +16,7 @@ const app = express();
 const corsOptions = {
     origin: [
         process.env.FRONTEND_URL, 
-        "https://clubmanagement-4mhaz9u3b-parthiks-projects-66c6720a.vercel.app",
+        "clubmanagement-zeta.vercel.app",
         "http://localhost:5173"
     ].filter(Boolean), // Removes undefined values
     methods: "GET,POST,PUT,DELETE,PATCH",
