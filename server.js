@@ -15,9 +15,11 @@ const app = express();
 //cors
 const corsOptions = {
     origin: [
-        process.env.FRONTEND_URL, 
-        "clubmanagement-zeta.vercel.app",
-        "http://localhost:5173"
+        process.env.FRONTEND_URL, // Ensure this matches your Vercel frontend URL
+        // "https://clubmanagement-zeta.vercel.app",
+        "https://clubmanagement1.netlify.app",
+        "http://localhost:5173", // Local development
+        "http://localhost:4173"  // Vite preview
     ].filter(Boolean), // Removes undefined values
     methods: "GET,POST,PUT,DELETE,PATCH",
     credentials: true,
